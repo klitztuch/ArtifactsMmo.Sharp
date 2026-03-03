@@ -10,6 +10,7 @@ on:
 env:
   SOLUTION_PATH: ArtifactsMmo.Sharp.slnx
   PROJECT_PATH: ArtifactsMmo.Sharp.Core/ArtifactsMmo.Sharp.Core.csproj
+  CLIENT_PROJECT_PATH: ArtifactsMmo.Sharp.Client
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
   NUGET_SOURCE_URL: https://api.nuget.org/v3/index.json
   
@@ -28,6 +29,9 @@ jobs:
       run: dotnet tool install --global NSwag.ConsoleCore
     - name: "Restore packages"
       run: dotnet restore ${{ env.SOLUTION_PATH }}
+    - name: "Run Nswag"
+      run: nswag run nswag.json /variables:Configuration=Release
+      working-directory: ${{ env.CLIENT_PROJECT_PATH }}
     - name: "Build project"
       run: dotnet build ${{ env.SOLUTION_PATH }} --no-restore --configuration Release
     - name: "Pack project"
