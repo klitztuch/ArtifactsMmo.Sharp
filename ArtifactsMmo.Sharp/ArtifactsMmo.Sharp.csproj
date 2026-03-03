@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-ArtifactsMmo.Sharp-b43de0cf-68ad-42e4-8b77-65bf6fb454c2</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,4 +23,9 @@
         <Link>.dockerignore</Link>
       </Content>
     </ItemGroup>
+
+    <Target Name="NSwag" BeforeTargets="BeforeBuild">
+      <Exec Command="nswag run nswag.json /variables:Configuration=$(Configuration)"
+            WorkingDirectory="$(MSBuildProjectDirectory)" />
+    </Target>
 </Project>
