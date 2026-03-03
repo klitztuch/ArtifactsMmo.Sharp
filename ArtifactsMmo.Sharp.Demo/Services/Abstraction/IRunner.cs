@@ -1,4 +1,4 @@
-namespace ArtifactsMmo.Sharp.Services.Abstraction;
+namespace ArtifactsMmo.Sharp.Demo.Services.Abstraction;
 
 public interface IRunner
 {

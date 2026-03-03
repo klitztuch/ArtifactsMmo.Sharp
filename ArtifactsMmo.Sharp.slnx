@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="ArtifactsMmo.Sharp.Client/ArtifactsMmo.Sharp.Client.csproj" />
+  <Project Path="ArtifactsMmo.Sharp.Core/ArtifactsMmo.Sharp.Core.csproj" />
+  <Project Path="ArtifactsMmo.Sharp.Demo/ArtifactsMmo.Sharp.Demo.csproj" />
+</Solution>

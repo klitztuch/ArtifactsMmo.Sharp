@@ -1,3 +1,5 @@
+namespace ArtifactsMmo.Sharp.Core;
+
 public class ArtifactsMmoConfiguration
 {
     public string Url { get; set; }
