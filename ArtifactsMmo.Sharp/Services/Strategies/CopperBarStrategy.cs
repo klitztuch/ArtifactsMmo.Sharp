@@ -18,13 +18,15 @@ public class CopperBarStrategy(ICharacterService character, ILogger<CopperBarStr
         if (oreCount >= OrePerBar)
         {
             logger.LogInformation("[{name}] Has {count} copper ore, crafting {bars} bar(s)", name, oreCount, oreCount / OrePerBar);
-            await character.MoveAsync(name, ForgeX, ForgeY, cancellationToken);
+            if (ch.X != ForgeX || ch.Y != ForgeY)
+                await character.MoveAsync(name, ForgeX, ForgeY, cancellationToken);
             await character.CraftAsync(name, BarCode, oreCount / OrePerBar, cancellationToken);
         }
         else
         {
             logger.LogInformation("[{name}] Has {count} copper ore, gathering more", name, oreCount);
-            await character.MoveAsync(name, OreX, OreY, cancellationToken);
+            if (ch.X != OreX || ch.Y != OreY)
+                await character.MoveAsync(name, OreX, OreY, cancellationToken);
             await character.GatherAsync(name, cancellationToken);
         }
     }
