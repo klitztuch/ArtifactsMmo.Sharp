@@ -1,4 +1,4 @@
-using ArtifactsMmo.Sharp.Generated;
+using ArtifactsMmo.Sharp.Client.Generated;
 using ArtifactsMmo.Sharp.Core.Services.Abstraction;
 using Microsoft.Extensions.Logging;
 

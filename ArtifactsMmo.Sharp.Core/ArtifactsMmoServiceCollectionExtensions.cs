@@ -1,8 +1,10 @@
 using System.Net.Http.Headers;
+using ArtifactsMmo.Sharp.Core.Models.Configuration;
 using ArtifactsMmo.Sharp.Core.Services;
 using ArtifactsMmo.Sharp.Core.Services.Abstraction;
-using ArtifactsMmo.Sharp.Generated;
+using ArtifactsMmo.Sharp.Client.Generated;
 using Microsoft.Extensions.DependencyInjection;
+using ArtifactsClient = ArtifactsMmo.Sharp.Client.Generated.ArtifactsClient;
 
 namespace ArtifactsMmo.Sharp.Core;
 

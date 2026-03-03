@@ -1,4 +1,5 @@
 using ArtifactsMmo.Sharp.Core;
+using ArtifactsMmo.Sharp.Core.Models.Configuration;
 using ArtifactsMmo.Sharp.Core.Services.Abstraction;
 using ArtifactsMmo.Sharp.Demo;
 using ArtifactsMmo.Sharp.Demo.Services;

@@ -53,7 +53,7 @@
       "wrapResponseMethods": [],
       "generateResponseClasses": true,
       "responseClass": "SwaggerResponse",
-      "namespace": "ArtifactsMmo.Sharp.Generated",
+      "namespace": "ArtifactsMmo.Sharp.Client.Generated",
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTimeOffset",
       "jsonConverters": null,

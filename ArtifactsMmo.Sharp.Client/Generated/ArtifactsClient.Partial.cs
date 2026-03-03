@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace ArtifactsMmo.Sharp.Generated;
+namespace ArtifactsMmo.Sharp.Client.Generated;
 
 public partial class ArtifactsClient
 {

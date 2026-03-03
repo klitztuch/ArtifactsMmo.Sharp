@@ -1,4 +1,4 @@
-namespace ArtifactsMmo.Sharp.Core;
+namespace ArtifactsMmo.Sharp.Core.Models.Configuration;
 
 public class ArtifactsMmoConfiguration
 {

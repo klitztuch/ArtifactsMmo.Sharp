@@ -1,5 +1,5 @@
 using ArtifactsMmo.Sharp.Core.Services.Abstraction;
-using ArtifactsMmo.Sharp.Generated;
+using ArtifactsMmo.Sharp.Client.Generated;
 
 namespace ArtifactsMmo.Sharp.Demo.Services.Strategies;
 

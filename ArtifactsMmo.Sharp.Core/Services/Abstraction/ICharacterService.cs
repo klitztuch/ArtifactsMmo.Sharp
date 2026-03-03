@@ -1,4 +1,4 @@
-using ArtifactsMmo.Sharp.Generated;
+using ArtifactsMmo.Sharp.Client.Generated;
 
 namespace ArtifactsMmo.Sharp.Core.Services.Abstraction;
 
