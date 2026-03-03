@@ -1,7 +1,7 @@
+using ArtifactsMmo.Sharp.Core.Services.Abstraction;
 using ArtifactsMmo.Sharp.Generated;
-using ArtifactsMmo.Sharp.Services.Abstraction;
 
-namespace ArtifactsMmo.Sharp.Services.Strategies;
+namespace ArtifactsMmo.Sharp.Demo.Services.Strategies;
 
 public class CopperBarStrategy(ICharacterService character, ILogger<CopperBarStrategy> logger) : ICharacterStrategy
 {

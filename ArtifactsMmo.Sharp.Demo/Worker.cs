@@ -1,6 +1,6 @@
-using ArtifactsMmo.Sharp.Services.Abstraction;
+using ArtifactsMmo.Sharp.Demo.Services.Abstraction;
 
-namespace ArtifactsMmo.Sharp;
+namespace ArtifactsMmo.Sharp.Demo;
 
 public class Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> logger) : BackgroundService
 {
@@ -12,17 +12,13 @@ public class Worker(IServiceScopeFactory serviceScopeFactory, ILogger<Worker> lo
             {
                 logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             }
-            
+
             using var scope = serviceScopeFactory.CreateScope();
 
             var runner = scope.ServiceProvider.GetRequiredService<IRunner>();
 
             await runner.Run(stoppingToken);
             await Task.Delay(1000, stoppingToken);
-            
-            
-            
-
         }
     }
 }

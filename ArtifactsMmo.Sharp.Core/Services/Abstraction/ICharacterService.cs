@@ -1,6 +1,6 @@
 using ArtifactsMmo.Sharp.Generated;
 
-namespace ArtifactsMmo.Sharp.Services.Abstraction;
+namespace ArtifactsMmo.Sharp.Core.Services.Abstraction;
 
 public interface ICharacterService
 {

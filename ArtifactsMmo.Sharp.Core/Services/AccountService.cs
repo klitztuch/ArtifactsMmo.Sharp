@@ -1,7 +1,8 @@
 using ArtifactsMmo.Sharp.Generated;
-using ArtifactsMmo.Sharp.Services.Abstraction;
+using ArtifactsMmo.Sharp.Core.Services.Abstraction;
+using Microsoft.Extensions.Logging;
 
-namespace ArtifactsMmo.Sharp.Services;
+namespace ArtifactsMmo.Sharp.Core.Services;
 
 public class AccountService(IArtifactsClient client, ILogger<AccountService> logger) : IAccountService
 {

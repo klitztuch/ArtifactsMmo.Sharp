@@ -1,8 +1,10 @@
 using System.Text.Json;
+using ArtifactsMmo.Sharp.Core;
+using ArtifactsMmo.Sharp.Core.Services.Abstraction;
+using ArtifactsMmo.Sharp.Demo.Services.Abstraction;
 using ArtifactsMmo.Sharp.Generated;
-using ArtifactsMmo.Sharp.Services.Abstraction;
 
-namespace ArtifactsMmo.Sharp.Services;
+namespace ArtifactsMmo.Sharp.Demo.Services;
 
 public class Runner(
     IGameService game,
