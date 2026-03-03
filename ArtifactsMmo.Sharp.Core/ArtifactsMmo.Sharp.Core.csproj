@@ -5,9 +5,11 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>default</LangVersion>
-        <PackageId>ArtifactsMmo.Sharp.Core</PackageId>
-        <Version>1.0.0</Version>
+        <PackageId>ArtifactsMmo.Sharp</PackageId>
+        <Version>0.1.0</Version>
         <Description>Service layer and DI extensions for the ArtifactsMmo API client.</Description>
+        <Authors>klitztuch</Authors>
+        <Company>klitztuch</Company>
     </PropertyGroup>
 
     <ItemGroup>
