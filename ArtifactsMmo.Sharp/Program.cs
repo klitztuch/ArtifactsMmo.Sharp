@@ -1,4 +1,6 @@
+using System.Net.Http.Headers;
 using ArtifactsMmo.Sharp;
+using ArtifactsMmo.Sharp.Generated;
 using ArtifactsMmo.Sharp.Services;
 using ArtifactsMmo.Sharp.Services.Abstraction;
 
@@ -6,6 +8,7 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();
 
 builder.Services.AddScoped<IRunner, Runner>();
+
 var artifactsMmoConfiguration = builder.Configuration.GetSection("ArtifactsMmo").Get<ArtifactsMmoConfiguration>();
 if (artifactsMmoConfiguration is null)
 {
@@ -13,21 +16,24 @@ if (artifactsMmoConfiguration is null)
 }
 
 builder.Services.AddSingleton(artifactsMmoConfiguration);
-builder.Services.AddHttpClient<IGameService, GameService>((serviceProvider, httpClient) =>
+
+builder.Services.AddHttpClient("ArtifactsMmo", http =>
 {
-    httpClient.BaseAddress = new Uri(artifactsMmoConfiguration.Url);
-    httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", artifactsMmoConfiguration.ApiToken);
+    http.BaseAddress = new Uri(artifactsMmoConfiguration.Url);
+    http.DefaultRequestHeaders.Authorization =
+        new AuthenticationHeaderValue("Bearer", artifactsMmoConfiguration.ApiToken);
 });
 
-
-
-builder.Services.AddHttpClient<ICharacterService, CharacterService>((serviceProvider, httpClient) =>
+builder.Services.AddScoped<IArtifactsClient>(sp =>
 {
-    httpClient.BaseAddress = new Uri(artifactsMmoConfiguration.Url);
-    httpClient.DefaultRequestHeaders.Authorization =
-        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", artifactsMmoConfiguration.ApiToken);
-    serviceProvider.GetRequiredService<IGameService>().GetCharactersAsync();
+    var factory = sp.GetRequiredService<IHttpClientFactory>();
+    var http = factory.CreateClient("ArtifactsMmo");
+    return new ArtifactsClient(artifactsMmoConfiguration.Url, http);
 });
+
+builder.Services.AddScoped<ICharacterService, CharacterService>();
+builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 var host = builder.Build();
 host.Run();

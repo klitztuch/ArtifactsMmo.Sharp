@@ -2,22 +2,26 @@ using ArtifactsMmo.Sharp.Services.Abstraction;
 
 namespace ArtifactsMmo.Sharp.Services;
 
-public class Runner(IGameService game, ArtifactsMmoConfiguration configuration, ILogger<Runner> logger) : IRunner
+public class Runner(IGameService game, ICharacterService character, ArtifactsMmoConfiguration configuration, ILogger<Runner> logger) : IRunner
 {
     public async Task Run(CancellationToken cancellationToken = default)
     {
         logger.LogInformation("Runner running at: {time}", DateTimeOffset.Now);
+
+        var name = configuration.Characters[0];
+
         while (!cancellationToken.IsCancellationRequested)
         {
-            var characters = await game.GetCharactersAsync(cancellationToken);
-            // cooper bar cycle
-            await game.MoveAsync(2, 0, cancellationToken);
-            foreach (var count in Enumerable.Range(0, 10))
+            var characters = await game.GetMyCharactersAsync(cancellationToken);
+
+            // copper bar cycle: move to copper ore -> gather 10x -> move to forge -> craft
+            await character.MoveAsync(name, 2, 0, cancellationToken);
+            foreach (var _ in Enumerable.Range(0, 10))
             {
-                await game.GatherAsync(cancellationToken);
+                await character.GatherAsync(name, cancellationToken);
             }
-            await game.MoveAsync(1, 5, cancellationToken);
-            await game.CraftAsync("copper", 1, cancellationToken);
+            await character.MoveAsync(name, 1, 5, cancellationToken);
+            await character.CraftAsync(name, "copper", 1, cancellationToken);
         }
     }
 }
