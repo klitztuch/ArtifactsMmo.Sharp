@@ -70,7 +70,6 @@
       "classStyle": "Poco",
       "jsonLibrary": "SystemTextJson",
       "generateNullableReferenceTypes": true,
-      "generateOptionalPropertiesAsNullable": true,
       "generateDefaultValues": true,
       "generateDataAnnotations": true,
       "excludedTypeNames": [],
