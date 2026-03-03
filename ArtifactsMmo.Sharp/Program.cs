@@ -3,6 +3,7 @@ using ArtifactsMmo.Sharp;
 using ArtifactsMmo.Sharp.Generated;
 using ArtifactsMmo.Sharp.Services;
 using ArtifactsMmo.Sharp.Services.Abstraction;
+using ArtifactsMmo.Sharp.Services.Strategies;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();
@@ -34,6 +35,7 @@ builder.Services.AddScoped<IArtifactsClient>(sp =>
 builder.Services.AddScoped<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<ICharacterStrategy, CopperBarStrategy>();
 
 var host = builder.Build();
 host.Run();
