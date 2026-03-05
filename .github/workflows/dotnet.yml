@@ -8,8 +8,10 @@ on:
     types: [published]
     
 env:
+  SOLUTION_NAME: ArtifactsMmo.Sharp
   SOLUTION_PATH: ArtifactsMmo.Sharp.slnx
   PROJECT_PATH: ArtifactsMmo.Sharp.Core/ArtifactsMmo.Sharp.Core.csproj
+  CLIENT_PROJECT_PATH: ArtifactsMmo.Sharp.Client
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
   NUGET_SOURCE_URL: https://api.nuget.org/v3/index.json
   
@@ -28,9 +30,12 @@ jobs:
       run: dotnet tool install --global NSwag.ConsoleCore
     - name: "Restore packages"
       run: dotnet restore ${{ env.SOLUTION_PATH }}
+    - name: "Run Nswag"
+      run: nswag run nswag.json /variables:Configuration=Release
+      working-directory: ${{ env.CLIENT_PROJECT_PATH }}
     - name: "Build project"
       run: dotnet build ${{ env.SOLUTION_PATH }} --no-restore --configuration Release
     - name: "Pack project"
       run: dotnet pack ${{ env.PROJECT_PATH }} -p:PackageVersion=${{ github.event.release.name }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
     - name:  "Push package"
-      run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/<Solution Name>.${{ github.event.release.name }}.nupkg -s ${{ env.NUGET_SOURCE_URL }} --api-key ${{ secrets.NUGET_API_KEY }}
+      run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/${{ env.SOLUTION_NAME }}.${{ github.event.release.name }}.nupkg -s ${{ env.NUGET_SOURCE_URL }} --api-key ${{ secrets.NUGET_API_KEY }}
